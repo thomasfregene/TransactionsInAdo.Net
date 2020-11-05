@@ -1,0 +1,28 @@
+Business Logic with Transaction statement
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Date:      Thu Nov 5 02:29:03 2020 +0100
+#
+# interactive rebase in progress; onto e6666f7
+# Last commands done (2 commands done):
+#    pick a0013b9 Retrieving Data from Database
+#    reword f9cc325 Business Logic without Transaction statement
+# Next command to do (1 remaining command):
+#    reword 61f3a96 Business Logic with Transaction statement
+# You are currently editing a commit while rebasing branch 'master' on 'e6666f7'.
+#
+# Changes to be committed:
+#	modified:   .vs/TransactionsInAdo.Net/v16/.suo
+#	modified:   WebForm1.aspx.cs
+#	modified:   bin/TransactionsInAdo.Net.dll
+#	modified:   bin/TransactionsInAdo.Net.pdb
+#	modified:   obj/Debug/TransactionsInAdo.Net.csprojAssemblyReference.cache
+#	modified:   obj/Debug/TransactionsInAdo.Net.dll
+#	modified:   obj/Debug/TransactionsInAdo.Net.pdb
+#
+# Untracked files:
+#	git
+#	rebase
+#
