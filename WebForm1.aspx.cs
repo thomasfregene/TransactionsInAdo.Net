@@ -53,20 +53,28 @@ namespace TransactionsInAdo.Net
             string cs = ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
             using (SqlConnection con = new SqlConnection(cs))
             {
+                    con.Open();
+
+                    //sqlTransaction obj
+                    SqlTransaction transaction = con.BeginTransaction();
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("Update Accounts Set Balance = Balance - 10 Where AccountNumber = 'A1'", con);
-                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand("Update Accounts Set Balance = Balance - 10 Where AccountNumber = 'A1'", con,transaction);
                     cmd.ExecuteNonQuery();
 
-                    cmd = new SqlCommand("Update Accounts1 Set Balance = Balance + 10 Where AccountNumber = 'A2'", con);
+                    cmd = new SqlCommand("Update Accounts1 Set Balance = Balance + 10 Where AccountNumber = 'A2'", con, transaction);
                     cmd.ExecuteNonQuery();
+
+                    //if transaction succeeds
+                    transaction.Commit();
 
                     lblMessage.Text = "Transaction Successful";
                     lblMessage.ForeColor = System.Drawing.Color.Green;
                 }
                 catch (Exception)
                 {
+                    transaction.Rollback();
                     lblMessage.Text = "Transaction Failed";
                     lblMessage.ForeColor = System.Drawing.Color.Red;
                 }
