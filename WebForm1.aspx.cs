@@ -41,7 +41,7 @@ namespace TransactionsInAdo.Net
                     }
                     else
                     {
-                        lblAccountNumber2.Text = "A1";
+                        lblAccountNumber2.Text = "A2";
                         lblBalance2.Text = rdr["Balance"].ToString();
                         lblName2.Text = rdr["CustomerName"].ToString();
                     }
@@ -50,7 +50,28 @@ namespace TransactionsInAdo.Net
         }
         protected void btnTransfer_Click(object sender, EventArgs e)
         {
-            
+            string cs = ConfigurationManager.ConnectionStrings["CS"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("Update Accounts Set Balance = Balance - 10 Where AccountNumber = 'A1'", con);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+
+                    cmd = new SqlCommand("Update Accounts1 Set Balance = Balance + 10 Where AccountNumber = 'A2'", con);
+                    cmd.ExecuteNonQuery();
+
+                    lblMessage.Text = "Transaction Successful";
+                    lblMessage.ForeColor = System.Drawing.Color.Green;
+                }
+                catch (Exception)
+                {
+                    lblMessage.Text = "Transaction Failed";
+                    lblMessage.ForeColor = System.Drawing.Color.Red;
+                }
+                GetData();
+            }
         }
     }
 }
